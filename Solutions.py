@@ -48,13 +48,37 @@ class Solution:
                 permutations.append([nums[i]] + perm)
         return permutations
 
+    # def subsets(self, nums: List[int]) -> List[List[int]]:
+    #     interval = range(len(nums))
+    #     subsets = [nums]
+    #     for curr_interval in interval:
+    #         for i in range(len(nums) + 1):
+    #             next_subset = nums[i : i + curr_interval]
+    #             if next_subset not in subsets:
+    #                 subsets.append(next_subset)
+    #     return subsets
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        if len(nums) == 0:
+            return [[]]
+        if len(nums) == 1:
+            return [nums, []]
+
+        subs = [nums]
+
+        for i in range(len(nums)):
+            for sub in self.subsets(nums[:i] + nums[i + 1 :]):
+                if sub not in subs:
+                    subs.append(sub)
+        return subs
+
 
 def main():
     solution = Solution()
     # print(solution.twoSum([-1, -2, -4, -5], -9))
     # print(solution.romanToInt("MCMXCIV"))
     # print(solution.longestCommonPrefix(["reflower", "flow", "flight"]))
-    print(len(solution.permute([1, 2, 3, 4])))
+    # print(len(solution.permute([1, 2, 3, 4])))
+    print(solution.subsets([1, 2, 3]))
 
 
 if __name__ == "__main__":
