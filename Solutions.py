@@ -108,6 +108,18 @@ class Solution:
 
         return root
 
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+
+        inorder = list()
+
+        inorder.extend(self.inorderTraversal(root.left))
+        inorder.append(root.val)
+        inorder.extend(self.inorderTraversal(root.right))
+
+        return inorder
+
 
 def main():
     solution = Solution()
@@ -116,15 +128,22 @@ def main():
     # print(solution.longestCommonPrefix(["reflower", "flow", "flight"]))
     # print(len(solution.permute([1, 2, 3, 4])))
     # print(solution.subsets([1, 2, 3]))
-    tree = TreeNode(4)
-    tree.left = TreeNode(2)
-    tree.right = TreeNode(7)
-    tree.left.left = TreeNode(1)
-    tree.left.right = TreeNode(3)
-    tree.right.left = TreeNode(6)
-    tree.right.right = TreeNode(9)
 
-    print(solution.invertTree(tree))
+    # tree = TreeNode(4)
+    # tree.left = TreeNode(2)
+    # tree.right = TreeNode(7)
+    # tree.left.left = TreeNode(1)
+    # tree.left.right = TreeNode(3)
+    # tree.right.left = TreeNode(6)
+    # tree.right.right = TreeNode(9)
+
+    # print(solution.invertTree(tree))
+
+    tree = TreeNode(1)
+    # tree.right = TreeNode(2)
+    # tree.right.left = TreeNode(3)
+
+    print(solution.inorderTraversal(tree))
 
 
 if __name__ == "__main__":
